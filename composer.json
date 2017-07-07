@@ -1,0 +1,13 @@
+{
+  "name": "salamtam/mongo-query-php",
+  "authors": [
+      {
+          "name": "Patchara Suwanwanakul",
+          "email": "salamtam.p@gmail.com"
+      }
+  ],
+  "description": "for query mongodb",
+  "require": {
+      "mongodb/mongodb": "^1.1"
+  }
+}
