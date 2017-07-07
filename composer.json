@@ -1,13 +1,19 @@
 {
   "name": "salamtam/mongo-query-php",
+  "type": "vcs",
   "authors": [
-      {
-          "name": "Patchara Suwanwanakul",
-          "email": "salamtam.p@gmail.com"
-      }
+    {
+        "name": "Patchara Suwanwanakul",
+        "email": "salamtam.p@gmail.com"
+    }
   ],
   "description": "for query mongodb",
   "require": {
       "mongodb/mongodb": "^1.1"
+  },
+  "autoload": {
+  	"psr-4": {
+  		"MongoQueryPHP\\": "src/"
+  	}
   }
 }
