@@ -122,3 +122,71 @@ foreach ($cursor as $doc) {
 }
 ```
 
+##Example 4
+
+**Aggregate with URL**
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use MongoQueryPHP\MongoQueryPHP;
+
+/* set config */
+$config = [
+  'url' => 'mongodb://localhost:27017',
+  'database' => 'test',
+  'collection' => 'member'
+];
+
+/* set query (filter) */
+$filter = [
+  '$match' => [
+    'name' => 'salamtam'
+  ]
+];
+
+/* connect database */
+$db = new MongoQueryPHP($config);
+$db->setDatabase($config['database'])->setCollection($config['collection']);
+
+/* aggregate database */
+$cursor = $db->aggregate($filter);
+
+/* result */
+foreach ($cursor as $doc) {
+  echo json_encode($doc) . PHP_EOL;
+  break;
+}
+```
+
+##Example 5
+
+**Aggregate with filter**
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use MongoQueryPHP\MongoQueryPHP;
+
+/* set config */
+$config = [
+  'url' => 'mongodb://localhost:27017',
+  'database' => 'test',
+  'collection' => 'member'
+];
+
+/* set query (filter) */
+$filter = json_decode('[{"$match":{"name":"salamtam","created_at":{"$gte":1499533200000}}}]', true);
+
+/* connect database */
+$db = new MongoQueryPHP($config);
+$db->setDatabase($config['database'])->setCollection($config['collection']);
+
+/* aggregate database */
+$cursor = $db->aggregate($filter);
+
+/* result */
+foreach ($cursor as $doc) {
+  echo json_encode($doc) . PHP_EOL;
+  break;
+}
+```
+
