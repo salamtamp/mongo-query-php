@@ -4,9 +4,16 @@ namespace MongoQueryPHP;
 
 class MongoQueryPHP
 {
-  public function __construct()
+  public function __construct($config=false)
   {
-    return $this->createConnection();
+    if ($config === false) {
+      $config = [
+        'host' => 'localhost',
+        'port' => '27017'
+      ];
+    }
+
+    return $this->createConnection($config);
   }
 
   public function setDatabase($database)
@@ -53,7 +60,7 @@ class MongoQueryPHP
     return $result;
   }
 
-  public function createConnection($config = ['host' => 'localhost', 'port' => '27017'])
+  public function createConnection($config)
   {
     if (!empty($config['url'])) {
       $url = $config['url'];
