@@ -124,6 +124,50 @@ foreach ($cursor as $doc) {
 
 ##Example 4
 
+**Query with multi filter and sort**
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use MongoQueryPHP\MongoQueryPHP;
+
+/* set config */
+$config = [
+  'url' => 'mongodb://localhost:27017',
+  'database' => 'test',
+  'collection' => 'member'
+];
+
+/* set query (filter) */
+$filter = [
+    'name' => 'salamtam',
+    'created_at' => [
+        '$gte' => 1499533200000,
+    ],
+];
+
+$sort = [
+    'sort' => [
+        'created_at' => -1
+    ],
+];
+
+
+/* connect database */
+$db = new MongoQueryPHP($config);
+$db->setDatabase($config['database'])->setCollection($config['collection']);
+
+/* query database */
+$cursor = $db->query($filter, $sort);
+
+/* result */
+foreach ($cursor as $doc) {
+  echo json_encode($doc) . PHP_EOL;
+  break;
+}
+```
+
+##Example 5
+
 **Aggregate with URL**
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
@@ -158,7 +202,7 @@ foreach ($cursor as $doc) {
 }
 ```
 
-##Example 5
+##Example 6
 
 **Aggregate with filter**
 ```php
