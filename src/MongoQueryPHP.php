@@ -78,13 +78,13 @@ class MongoQueryPHP
     return $this->client;
   }
 
-  public function query($filter)
+  public function query($filter, $options=[])
   {
     $cursor = false;
     $db_collection = $this->getDbCollection();
 
     if ($db_collection !== false) {
-      $query = new \MongoDB\Driver\Query($filter);
+      $query = new \MongoDB\Driver\Query($filter, $options);
       $cursor = $this->client->executeQuery($db_collection, $query);
     }
 
